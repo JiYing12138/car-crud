@@ -34,6 +34,12 @@ jobs:
       - name: Run integration tests
         run: python -m pytest tests/integration -q
 
+      - name: Run API tests
+        run: python -m pytest tests/api -q
+
+      - name: Run E2E tests
+        run: python -m pytest tests/e2e -q --ignore=tests/e2e/test_workshop_e2e.py
+
   publish:
     runs-on: ubuntu-latest
     needs: tests
@@ -56,4 +62,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/cars-crud:latest
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/cars-crud:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/cars-crud:${{ github.sha }}
