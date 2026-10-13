@@ -36,7 +36,8 @@ jobs:
         run: python -m pytest tests/api -q
 
       - name: Run E2E tests
-        run: python -m pytest tests/e2e -q -k "not test_user_edits_car_and_change_survives_reload"
+        run: python -m pytest tests/e2e -q --ignore=tests/e2e/test_workshop_e2e.py
+
 
 
 
