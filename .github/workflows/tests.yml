@@ -35,6 +35,8 @@ jobs:
       - name: Run API tests
         run: python -m pytest tests/api -q
 
-       - name: Run E2E tests
+      - name: Run E2E tests
         run: python -m pytest tests/e2e -q -k "not test_user_edits_car_and_change_survives_reload"
+
+
 
